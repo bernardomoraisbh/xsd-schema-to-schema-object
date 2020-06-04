@@ -1,0 +1,1127 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://iec.ch/TC57/2014/CIM-schema-cim16#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2014/CIM-schema-cim16#">
+<xs:annotation/>
+<xs:complexType name="ACDCTerminal" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ACDCTerminal">
+<xs:annotation>
+<xs:documentation>An electrical connection point (AC or DC) to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ACLineSegment" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ACLineSegment">
+<xs:annotation>
+<xs:documentation>A wire or combination of wires, with consistent electrical characteristics, building a single electrical system, used to carry alternating current between points in the power system.</xs:documentation>
+<xs:documentation>For symmetrical, transposed 3ph lines, it is sufficient to use  attributes of the line segment, which describe impedances and admittances for the entire length of the segment.  Additionally impedances can be computed by using length and associated per length impedances.</xs:documentation>
+<xs:documentation>The BaseVoltage at the two ends of ACLineSegments in a Line shall have the same BaseVoltage.nominalVoltage. However, boundary lines  may have slightly different BaseVoltage.nominalVoltages and  variation is allowed. Larger voltage difference in general requires use of an equivalent branch.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Conductor">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Analog" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Analog">
+<xs:annotation>
+<xs:documentation>Analog represents an analog Measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Measurement">
+<xs:sequence>
+<xs:element name="AnalogValues" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Analog.AnalogValues">
+<xs:annotation>
+<xs:documentation>The values connected to this measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResource" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource">
+<xs:annotation>
+<xs:documentation>The power system resource that contains the measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AnalogValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AnalogValue">
+<xs:annotation>
+<xs:documentation>AnalogValue represents an analog MeasurementValue.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:MeasurementValue">
+<xs:sequence>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:float" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AnalogValue.value">
+<xs:annotation>
+<xs:documentation>The value to supervise.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Analog" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AnalogValue.Analog">
+<xs:annotation>
+<xs:documentation>Measurement to which this value is connected.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Asset" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset">
+<xs:annotation>
+<xs:documentation>Tangible resource of the utility, including power system equipment, various end devices, cabinets, buildings, etc. For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="AssetContainer" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.AssetContainer">
+<xs:annotation>
+<xs:documentation>Container of this asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.Location">
+<xs:annotation>
+<xs:documentation>Location of this asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResources" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.PowerSystemResources">
+<xs:annotation>
+<xs:documentation>All power system resources used to electrically model this asset. For example, transformer asset is electrically modelled with a transformer and its windings and tap changer.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AssetContainer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetContainer">
+<xs:annotation>
+<xs:documentation>Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Asset">
+<xs:sequence>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetContainer.Assets">
+<xs:annotation>
+<xs:documentation>All assets within this container asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="AssetInfo" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetInfo">
+<xs:annotation>
+<xs:documentation>Set of attributes of an asset, representing typical datasheet information of a physical device that can be instantiated and shared in different data exchange contexts:</xs:documentation>
+<xs:documentation>- as attributes of an asset instance (installed or in stock)</xs:documentation>
+<xs:documentation>- as attributes of an asset model (product by a manufacturer)</xs:documentation>
+<xs:documentation>- as attributes of a type asset (generic type of an asset as used in designs/extension planning).</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="PowerSystemResources" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetInfo.PowerSystemResources">
+<xs:annotation>
+<xs:documentation>All power system resources with this datasheet information.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="BaseVoltage" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseVoltage">
+<xs:annotation>
+<xs:documentation>Defines a system base voltage which is referenced.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="nominalVoltage" minOccurs="0" maxOccurs="1" type="m:Voltage" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseVoltage.nominalVoltage">
+<xs:annotation>
+<xs:documentation>The power system resource's base voltage.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ConductingEquipment" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseVoltage.ConductingEquipment">
+<xs:annotation>
+<xs:documentation>All conducting equipment with this base voltage.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ConductingEquipment" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConductingEquipment">
+<xs:annotation>
+<xs:documentation>The parts of the AC power system that are designed to carry current or that are conductively connected through terminals.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Equipment">
+<xs:sequence>
+<xs:element name="BaseVoltage" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConductingEquipment.BaseVoltage">
+<xs:annotation>
+<xs:documentation>Base voltage of this conducting equipment.  Use only when there is no voltage level container used and only one base voltage applies.  For example, not used for transformers.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Terminals" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConductingEquipment.Terminals">
+<xs:annotation>
+<xs:documentation>Conducting equipment have terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Conductor" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Conductor">
+<xs:annotation>
+<xs:documentation>Combination of conducting material with consistent electrical characteristics, building a single electrical system, used to carry current between points in the power system.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ConductingEquipment">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ConnectivityNode" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConnectivityNode">
+<xs:annotation>
+<xs:documentation>Connectivity nodes are points where terminals of AC conducting equipment are connected together with zero impedance.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="ConnectivityNodeContainer" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConnectivityNode.ConnectivityNodeContainer">
+<xs:annotation>
+<xs:documentation>Container of this connectivity node.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Terminals" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConnectivityNode.Terminals">
+<xs:annotation>
+<xs:documentation>Terminals interconnected with zero impedance at a this connectivity node.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ConnectivityNodeContainer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer">
+<xs:annotation>
+<xs:documentation>A base class for all objects that may contain connectivity nodes or topological nodes.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:PowerSystemResource">
+<xs:sequence>
+<xs:element name="ConnectivityNodes" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer.ConnectivityNodes">
+<xs:annotation>
+<xs:documentation>Connectivity nodes which belong to this connectivity node container.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Customer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Customer">
+<xs:annotation>
+<xs:documentation>Organisation receiving services from service supplier.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:OrganisationRole">
+<xs:sequence>
+<xs:element name="pucNumber" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Customer.pucNumber">
+<xs:annotation>
+<xs:documentation>(if applicable) Public utilities commission (PUC) identification number.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType name="DemographicKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DemographicKind">
+<xs:annotation>
+<xs:documentation>Demographic kind of a land property.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="other">
+<xs:annotation/>
+</xs:enumeration>
+<xs:enumeration value="rural">
+<xs:annotation/>
+</xs:enumeration>
+<xs:enumeration value="urban">
+<xs:annotation/>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="Discrete" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Discrete">
+<xs:annotation>
+<xs:documentation>Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Measurement">
+<xs:sequence>
+<xs:element name="DiscreteValues" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Discrete.DiscreteValues">
+<xs:annotation>
+<xs:documentation>The values connected to this measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResource" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource">
+<xs:annotation>
+<xs:documentation>The power system resource that contains the measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="DiscreteValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DiscreteValue">
+<xs:annotation>
+<xs:documentation>DiscreteValue represents a discrete MeasurementValue.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:MeasurementValue">
+<xs:sequence>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DiscreteValue.value">
+<xs:annotation>
+<xs:documentation>The value to supervise.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Discrete" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DiscreteValue.Discrete">
+<xs:annotation>
+<xs:documentation>Measurement to which this value is connected.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="EnergyConnection" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#EnergyConnection">
+<xs:annotation/>
+<xs:complexContent>
+<xs:extension base="m:ConductingEquipment">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Equipment" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Equipment">
+<xs:annotation>
+<xs:documentation>The parts of a power system that are physical devices, electronic or mechanical.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:PowerSystemResource">
+<xs:sequence>
+<xs:element name="AdditionalEquipmentContainer" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Equipment.AdditionalEquipmentContainer">
+<xs:annotation>
+<xs:documentation>Additional equipment container beyond the primary equipment container.  The equipment is contained in another equipment container, but also grouped with this equipment container.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="EquipmentContainer" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Equipment.EquipmentContainer">
+<xs:annotation>
+<xs:documentation>Container of this equipment.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="EquipmentContainer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#EquipmentContainer">
+<xs:annotation>
+<xs:documentation>A modeling construct to provide a root class for containing equipment.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ConnectivityNodeContainer">
+<xs:sequence>
+<xs:element name="Equipments" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#EquipmentContainer.Equipments">
+<xs:annotation>
+<xs:documentation>Contained equipment.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Feeder" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Feeder">
+<xs:annotation>
+<xs:documentation>A collection of equipment for organizational purposes, used for grouping distribution resources.</xs:documentation>
+<xs:documentation>The organization a feeder does not necessarily reflect connectivity or current operation state.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:EquipmentContainer">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="IdentifiedObject" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject">
+<xs:annotation>
+<xs:documentation>This is a root class to provide common identification for all classes needing identification and naming attributes.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="mRID" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="aliasName" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.aliasName">
+<xs:annotation>
+<xs:documentation>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+<xs:documentation>The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.description">
+<xs:annotation>
+<xs:documentation>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="LandProperty" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#LandProperty">
+<xs:annotation>
+<xs:documentation>Information about a particular piece of (land) property such as its use. Ownership of the property may be determined through associations to Organisations and/or ErpPersons.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="demographicKind" minOccurs="0" maxOccurs="1" type="m:DemographicKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#LandProperty.demographicKind">
+<xs:annotation>
+<xs:documentation>Demographics around the site.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Locations" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#LandProperty.Locations">
+<xs:annotation>
+<xs:documentation>The spatail description of a piece of property.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Location" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location">
+<xs:annotation>
+<xs:documentation>The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more postition points (coordinates) in a given coordinate system.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.Assets">
+<xs:annotation>
+<xs:documentation>All assets at this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="mainAddress" minOccurs="0" maxOccurs="1" type="m:StreetAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.mainAddress">
+<xs:annotation>
+<xs:documentation>Main address of the location.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="PositionPoints" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.PositionPoints">
+<xs:annotation>
+<xs:documentation>Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResources" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.PowerSystemResources">
+<xs:annotation>
+<xs:documentation>All power system resources at this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Measurement" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement">
+<xs:annotation>
+<xs:documentation>A Measurement represents any measured, calculated or non-measured non-calculated quantity. Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.</xs:documentation>
+<xs:documentation>The PSR - Measurement association is intended to capture this use of Measurement and is included in the naming hierarchy based on EquipmentContainer. The naming hierarchy typically has Measurements as leafs, e.g. Substation-VoltageLevel-Bay-Switch-Measurement.</xs:documentation>
+<xs:documentation>Some Measurements represent quantities related to a particular sensor location in the network, e.g. a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator. The sensing position is not captured in the PSR - Measurement association. Instead it is captured by the Measurement - Terminal association that is used to define the sensing location in the network topology. The location is defined by the connection of the Terminal to ConductingEquipment.</xs:documentation>
+<xs:documentation>If both a Terminal and PSR are associated, and the PSR is of type ConductingEquipment, the associated Terminal should belong to that ConductingEquipment instance.</xs:documentation>
+<xs:documentation>When the sensor location is needed both Measurement-PSR and Measurement-Terminal are used. The Measurement-Terminal association is never used alone.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="MeasurementValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#MeasurementValue">
+<xs:annotation>
+<xs:documentation>The current state for a measurement. A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="OperatingParticipant" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OperatingParticipant">
+<xs:annotation>
+<xs:documentation>An operator of multiple power system resource objects. Note multple operating participants may operate the same power system resource object.   This can be used for modeling jointly owned units where each owner operates as a contractual share.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="OperatingShare" minOccurs="0" maxOccurs="unbounded" type="m:OperatingShare" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OperatingParticipant.OperatingShare">
+<xs:annotation>
+<xs:documentation>The operating shares of this operating participant.  An operating participant can be resused for any number of power system resources.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="OperatingShare" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OperatingShare">
+<xs:annotation>
+<xs:documentation>Specifies the operations contract relationship between a power system resource and a contract participant.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="OperatingParticipant" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OperatingShare.OperatingParticipant">
+<xs:annotation>
+<xs:documentation>The operating participant having this share with the associated power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResource" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OperatingShare.PowerSystemResource">
+<xs:annotation>
+<xs:documentation>The power system resource to which the share applies.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OrganisationRole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OrganisationRole">
+<xs:annotation>
+<xs:documentation>Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType name="PhaseCode" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PhaseCode">
+<xs:annotation>
+<xs:documentation>An unordered enumeration of phase identifiers.  Allows designation of phases for both transmission and distribution equipment, circuits and loads.   The enumeration, by itself, does not describe how the phases are connected together or connected to ground.  Ground is not explicitly denoted as a phase.</xs:documentation>
+<xs:documentation>Residential and small commercial loads are often served from single-phase, or split-phase, secondary circuits. For example of s12N, phases 1 and 2 refer to hot wires that are 180 degrees out of phase, while N refers to the neutral wire. Through single-phase transformer connections, these secondary circuits may be served from one or two of the primary phases A, B, and C. For three-phase loads, use the A, B, C phase codes instead of s12N.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="A">
+<xs:annotation>
+<xs:documentation>Phase A.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="AB">
+<xs:annotation>
+<xs:documentation>Phases A and B.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ABC">
+<xs:annotation>
+<xs:documentation>Phases A, B, and C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ABCN">
+<xs:annotation>
+<xs:documentation>Phases A, B, C, and N.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ABN">
+<xs:annotation>
+<xs:documentation>Phases A, B, and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="AC">
+<xs:annotation>
+<xs:documentation>Phases A and C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ACN">
+<xs:annotation>
+<xs:documentation>Phases A, C and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="AN">
+<xs:annotation>
+<xs:documentation>Phases A and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="B">
+<xs:annotation>
+<xs:documentation>Phase B.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BC">
+<xs:annotation>
+<xs:documentation>Phases B and C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BCN">
+<xs:annotation>
+<xs:documentation>Phases B, C, and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="BN">
+<xs:annotation>
+<xs:documentation>Phases B and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="C">
+<xs:annotation>
+<xs:documentation>Phase C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CN">
+<xs:annotation>
+<xs:documentation>Phases C and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="N">
+<xs:annotation>
+<xs:documentation>Neutral phase.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="X">
+<xs:annotation>
+<xs:documentation>Unknown non-neutral phase.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="XN">
+<xs:annotation>
+<xs:documentation>Unknown non-neutral phase plus neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="XY">
+<xs:annotation>
+<xs:documentation>Two unknown non-neutral phases.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="XYN">
+<xs:annotation>
+<xs:documentation>Two unknown non-neutral phases plus neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="none">
+<xs:annotation>
+<xs:documentation>No phases specified.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s1">
+<xs:annotation>
+<xs:documentation>Secondary phase 1.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s12">
+<xs:annotation>
+<xs:documentation>Secondary phase 1 and 2.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s12N">
+<xs:annotation>
+<xs:documentation>Secondary phases 1, 2, and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s1N">
+<xs:annotation>
+<xs:documentation>Secondary phase 1 and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s2">
+<xs:annotation>
+<xs:documentation>Secondary phase 2.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s2N">
+<xs:annotation>
+<xs:documentation>Secondary phase 2 and neutral.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType name="PhaseTapChanger" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PhaseTapChanger">
+<xs:annotation>
+<xs:documentation>A transformer phase shifting tap model that controls the phase angle difference across the power transformer and potentially the active power flow through the power transformer.  This phase tap model may also impact the voltage magnitude.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="Pole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Pole">
+<xs:annotation>
+<xs:documentation>Pole asset.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Structure">
+<xs:sequence>
+<xs:element name="classification" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Pole.classification">
+<xs:annotation>
+<xs:documentation>Pole class: 1, 2, 3, 4, 5, 6, 7, H1, H2, Other, Unknown.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PositionPoint" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint">
+<xs:annotation>
+<xs:documentation>Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="sequenceNumber" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.sequenceNumber">
+<xs:annotation>
+<xs:documentation>Zero-relative sequence number of this point within a series of points.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="xPosition" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.xPosition">
+<xs:annotation>
+<xs:documentation>X axis position.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="yPosition" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.yPosition">
+<xs:annotation>
+<xs:documentation>Y axis position.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.Location">
+<xs:annotation>
+<xs:documentation>Location described by this position point.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PowerSystemResource" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource">
+<xs:annotation>
+<xs:documentation>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="AssetDatasheet" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.AssetDatasheet">
+<xs:annotation>
+<xs:documentation>Datasheet information for this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Assets">
+<xs:annotation>
+<xs:documentation>All assets represented by this power system resource. For example, multiple conductor assets are electrically modelled as a single AC line segment.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Location">
+<xs:annotation>
+<xs:documentation>Location of this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Measurements" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Measurements">
+<xs:annotation>
+<xs:documentation>The measurements associated with this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="OperatingShare" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.OperatingShare">
+<xs:annotation>
+<xs:documentation>The operating shares of this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PowerTransformer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerTransformer">
+<xs:annotation>
+<xs:documentation>An electrical device consisting of  two or more coupled windings, with or without a magnetic core, for introducing mutual coupling between electric circuits. Transformers can be used to control voltage and phase shift (active power flow).</xs:documentation>
+<xs:documentation>A power transformer may be composed of separate transformer tanks that need not be identical.</xs:documentation>
+<xs:documentation>A power transformer can be modeled with or without tanks and is intended for use in both balanced and unbalanced representations.   A power transformer typically has two terminals, but may have one (grounding), three or more terminals.</xs:documentation>
+<xs:documentation>The inherited association ConductingEquipment.BaseVoltage should not be used.  The association from TransformerEnd to BaseVoltage should be used instead.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ConductingEquipment">
+<xs:sequence>
+<xs:element name="PowerTransformerEnd" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerTransformer.PowerTransformerEnd">
+<xs:annotation>
+<xs:documentation>The ends of this power transformer.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="PowerTransformerEnd" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerTransformerEnd">
+<xs:annotation>
+<xs:documentation>A PowerTransformerEnd is associated with each Terminal of a PowerTransformer.</xs:documentation>
+<xs:documentation>The impedance values r, r0, x, and x0 of a PowerTransformerEnd represents a star equivalent as follows</xs:documentation>
+<xs:documentation>1) for a two Terminal PowerTransformer the high voltage (TransformerEnd.endNumber=1) PowerTransformerEnd has non zero values on r, r0, x, and x0 while the low voltage (TransformerEnd.endNumber=0) PowerTransformerEnd has zero values for r, r0, x, and x0.</xs:documentation>
+<xs:documentation>2) for a three Terminal PowerTransformer the three PowerTransformerEnds represents a star equivalent with each leg in the star represented by r, r0, x, and x0 values.</xs:documentation>
+<xs:documentation>3) For a three Terminal transformer each PowerTransformerEnd shall have g, g0, b and b0 values corresponding the no load losses distributed on the three PowerTransformerEnds. The total no load loss shunt impedances may also be placed at one of the PowerTransformerEnds, preferably the end numbered 1, having the shunt values on end 1 is the preferred way.</xs:documentation>
+<xs:documentation>4) for a PowerTransformer with more than three Terminals the PowerTransformerEnd impedance values cannot be used. Instead use the TransformerMeshImpedance or split the transformer into multiple PowerTransformers.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:TransformerEnd">
+<xs:sequence>
+<xs:element name="ratedS" minOccurs="0" maxOccurs="1" type="m:ApparentPower" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerTransformerEnd.ratedS">
+<xs:annotation>
+<xs:documentation>Normal apparent power rating.</xs:documentation>
+<xs:documentation>The attribute shall be a positive value. For a two-winding transformer the values for the high and low voltage sides shall be identical.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="PowerTransformer" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerTransformerEnd.PowerTransformer">
+<xs:annotation>
+<xs:documentation>The power transformer of this power transformer end.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="ProtectedSwitch" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ProtectedSwitch">
+<xs:annotation>
+<xs:documentation>A ProtectedSwitch is a switching device that can be operated by ProtectionEquipment.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Switch">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="RatioTapChanger" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#RatioTapChanger">
+<xs:annotation>
+<xs:documentation>A tap changer that changes the voltage ratio impacting the voltage magnitude but not the phase angle across the transformer.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="Recloser" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Recloser">
+<xs:annotation>
+<xs:documentation>Pole-mounted fault interrupter with built-in phase and ground relays, current transformer (CT), and supplemental controls.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ProtectedSwitch">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="RegulatingCondEq" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#RegulatingCondEq">
+<xs:annotation>
+<xs:documentation>A type of conducting equipment that can regulate a quantity (i.e. voltage or flow) at a specific point in the network.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:EnergyConnection">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="StreetAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress">
+<xs:annotation>
+<xs:documentation>General purpose street and postal address information.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="townDetail" minOccurs="0" maxOccurs="1" type="m:TownDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.townDetail">
+<xs:annotation>
+<xs:documentation>Town detail.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Structure" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Structure">
+<xs:annotation>
+<xs:documentation>Construction holding assets such as conductors, transformers, switchgear, etc. Where applicable, number of conductors can be derived from the number of associated wire spacing instances.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:AssetContainer">
+<xs:sequence>
+<xs:element name="height" minOccurs="0" maxOccurs="1" type="m:Length" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Structure.height">
+<xs:annotation>
+<xs:documentation>Visible height of structure above ground level for overhead construction (e.g., Pole or Tower) or below ground level for an underground vault, manhole, etc. Refer to associated DimensionPropertiesInfo for other types of dimensions.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="SubGeographicalRegion" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#SubGeographicalRegion">
+<xs:annotation>
+<xs:documentation>A subset of a geographical region of a power system network model.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Switch" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Switch">
+<xs:annotation>
+<xs:documentation>A generic device designed to close, or open, or both, one or more electric circuits.  All switches are two terminal devices including grounding switches.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ConductingEquipment">
+<xs:sequence>
+<xs:element name="normalOpen" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Switch.normalOpen">
+<xs:annotation>
+<xs:documentation>The attribute is used in cases when no Measurement for the status value is present. If the Switch has a status measurement the Discrete.normalValue is expected to match with the Switch.normalOpen.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Terminal" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Terminal">
+<xs:annotation>
+<xs:documentation>An AC electrical connection point to a piece of conducting equipment. Terminals are connected at physical connection points called connectivity nodes.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ACDCTerminal">
+<xs:sequence>
+<xs:element name="phases" minOccurs="0" maxOccurs="1" type="m:PhaseCode" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Terminal.phases">
+<xs:annotation>
+<xs:documentation>Represents the normal network phasing condition.</xs:documentation>
+<xs:documentation>If the attribute is missing three phases (ABC or ABCN) shall be assumed.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ConductingEquipment" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Terminal.ConductingEquipment">
+<xs:annotation>
+<xs:documentation>The conducting equipment of the terminal.  Conducting equipment have  terminals that may be connected to other conducting equipment terminals via connectivity nodes or topological nodes.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="Tower" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Tower">
+<xs:annotation>
+<xs:documentation>Tower asset. Dimensions of the Tower are specified in associated DimensionsInfo class.</xs:documentation>
+<xs:documentation>When used for planning purposes, a transmission tower carrying two 3-phase circuits will have 2 instances of Connection, each of which will have 3 MountingPoint instances, one for each phase all with coordinates relative to a common origin on the tower. (It may also have a 3rd Connection with a single MountingPoint for the Neutral line).</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Structure">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TownDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail">
+<xs:annotation>
+<xs:documentation>Town details, in the context of address.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="code" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.code">
+<xs:annotation>
+<xs:documentation>Town code.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.name">
+<xs:annotation>
+<xs:documentation>Town name.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="TransformerCoreAdmittance" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TransformerCoreAdmittance">
+<xs:annotation>
+<xs:documentation>The transformer core admittance.  Used to specify the core admittance of a transformer in a manner that can be shared among power transformers.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="TransformerEnd" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TransformerEnd">
+<xs:annotation>
+<xs:documentation>A conducting connection point of a power transformer. It corresponds to a physical transformer winding terminal.  In earlier CIM versions, the TransformerWinding class served a similar purpose, but this class is more flexible because it associates to terminal but is not a specialization of ConductingEquipment.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="TransformerStarImpedance" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TransformerStarImpedance">
+<xs:annotation>
+<xs:documentation>Transformer star impedance (Pi-model) that accurately reflects impedance for transformers with 2 or 3 windings. For transformers with 4 or more windings, you must use TransformerMeshImpedance class.</xs:documentation>
+<xs:documentation>For transmission networks use PowerTransformerEnd impedances (r, r0, x, x0, b, b0, g and g0).</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="UndergroundStructure" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#UndergroundStructure">
+<xs:annotation>
+<xs:documentation>Underground structure.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Structure">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType name="WireInfo" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WireInfo">
+<xs:annotation>
+<xs:documentation>Wire data that can be specified per line segment phase, or for the line segment as a whole in case its phases all have the same wire characteristics.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:AssetInfo">
+<xs:sequence>
+<xs:element name="insulated" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WireInfo.insulated">
+<xs:annotation>
+<xs:documentation>True if conductor is insulated.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="radius" minOccurs="0" maxOccurs="1" type="m:Length" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WireInfo.radius">
+<xs:annotation>
+<xs:documentation>Outside radius of the wire.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="sizeDescription" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WireInfo.sizeDescription">
+<xs:annotation>
+<xs:documentation>Describes the wire gauge or cross section (e.g., 4/0, #2, 336.5).</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType name="Voltage" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Voltage">
+<xs:annotation>
+<xs:documentation>Electrical voltage, can be both AC and DC.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:float"/>
+</xs:simpleType>
+<xs:simpleType name="ApparentPower" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ApparentPower">
+<xs:annotation>
+<xs:documentation>Product of the RMS value of the voltage and the RMS value of the current.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:float"/>
+</xs:simpleType>
+<xs:simpleType name="Length" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Length">
+<xs:annotation>
+<xs:documentation>Unit of length. Never negative.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:float"/>
+</xs:simpleType>
+<xs:element name="NetworkOperation" type="m:NetworkOperation">
+</xs:element>
+<xs:complexType name="NetworkOperation">
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+    	<xs:element name="Asset" type="m:Asset" />
+		<xs:element name="AssetContainer" type="m:AssetContainer" />
+		<xs:element name="ACLineSegment" type="m:ACLineSegment" />
+		<xs:element name="Analog" type="m:Analog" />
+		<xs:element name="AnalogValue" type="m:AnalogValue" />
+		<xs:element name="BaseVoltage" type="m:BaseVoltage" />
+		<xs:element name="ConnectivityNode" type="m:ConnectivityNode" />
+		<xs:element name="Customer" type="m:Customer" />
+		<xs:element name="Discrete" type="m:Discrete" />
+		<xs:element name="DiscreteValue" type="m:DiscreteValue" />
+		<xs:element name="Equipment" type="m:Equipment" />
+		<xs:element name="EquipmentContainer" type="m:EquipmentContainer" />
+		<xs:element name="Feeder" type="m:Feeder" />
+		<xs:element name="IdentifiedObject" type="m:IdentifiedObject" />
+		<xs:element name="Location" type="m:Location" />
+		<xs:element name="LandProperty" type="m:LandProperty" />
+		<xs:element name="Measurement" type="m:Measurement" />
+		<xs:element name="OperatingParticipant" type="m:OperatingParticipant" />
+		<xs:element name="OperatingShare" type="m:OperatingShare" />
+		<xs:element name="Pole" type="m:Pole" />
+		<xs:element name="PositionPoint" type="m:PositionPoint" />
+		<xs:element name="PowerTransformer" type="m:PowerTransformer" />
+		<xs:element name="PowerTransformerEnd" type="m:PowerTransformerEnd" />
+		<xs:element name="ProtectedSwitch" type="m:ProtectedSwitch" />
+		<xs:element name="Recloser" type="m:Recloser" />
+		<xs:element name="RegulatingCondEq" type="m:RegulatingCondEq" />
+		<xs:element name="StreetAddress" type="m:StreetAddress" />
+		<xs:element name="Structure" type="m:Structure" />
+		<xs:element name="SubGeographicalRegion" type="m:SubGeographicalRegion" />
+		<xs:element name="Switch" type="m:Switch" />
+		<xs:element name="Terminal" type="m:Terminal" />
+		<xs:element name="Tower" type="m:Tower" />
+		<xs:element name="TownDetail" type="m:TownDetail" />
+		<xs:element name="UndergroundStructure" type="m:UndergroundStructure" />
+		<xs:element name="WireInfo" type="m:WireInfo" />  			
+	</xs:choice>
+</xs:complexType>
+</xs:schema>

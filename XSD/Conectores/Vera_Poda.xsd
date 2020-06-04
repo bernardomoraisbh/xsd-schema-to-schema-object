@@ -1,0 +1,2528 @@
+<?xml version="1.0" encoding="UTF-8"?><xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" targetNamespace="http://iec.ch/TC57/2014/CIM-schema-cim16#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2014/CIM-schema-cim16#">
+<xs:annotation/>
+<xs:complexType xmlns="" name="ActivityRecord" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord">
+<xs:annotation>
+<xs:documentation>Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.type">
+<xs:annotation>
+<xs:documentation>Type of event resulting in this activity record.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.Assets">
+<xs:annotation>
+<xs:documentation>All assets for which this activity record has been created.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" type="m:Status" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.status">
+<xs:annotation>
+<xs:documentation>Information on consequence of event resulting in this activity record.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Agreement" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Agreement">
+<xs:annotation>
+<xs:documentation>Formal agreement between two parties defining the terms and conditions for a set of services. The specifics of the services are, in turn, defined via one or more service agreements.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Document">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Analog" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Analog">
+<xs:annotation>
+<xs:documentation>Analog represents an analog Measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Measurement">
+<xs:sequence>
+<xs:element name="AnalogValues" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Analog.AnalogValues">
+<xs:annotation>
+<xs:documentation>The values connected to this measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="AnalogValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AnalogValue">
+<xs:annotation>
+<xs:documentation>AnalogValue represents an analog MeasurementValue.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:MeasurementValue">
+<xs:sequence>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:float" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AnalogValue.value">
+<xs:annotation>
+<xs:documentation>The value to supervise.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Analog" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AnalogValue.Analog">
+<xs:annotation>
+<xs:documentation>Measurement to which this value is connected.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Appointment" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Appointment">
+<xs:annotation>
+<xs:documentation>Meeting time and location.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Approver" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Approver">
+<xs:annotation>
+<xs:documentation>Person who accepted/signed or rejected the document.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:DocumentPersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Asset" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset">
+<xs:annotation>
+<xs:documentation>Tangible resource of the utility, including power system equipment, various end devices, cabinets, buildings, etc. For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.type">
+<xs:annotation>
+<xs:documentation>Utility-specific classification of Asset and its subtypes, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.Location">
+<xs:annotation>
+<xs:documentation>Location of this asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Measurements" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.Measurements">
+<xs:annotation>
+<xs:documentation>Measurement related to this asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Ownerships" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.Ownerships">
+<xs:annotation>
+<xs:documentation>All ownerships of this asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="WorkTasks" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.WorkTasks">
+<xs:annotation>
+<xs:documentation>All non-replacement work tasks performed on this asset.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="AssetContainer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetContainer">
+<xs:annotation>
+<xs:documentation>Asset that is aggregation of other assets such as conductors, transformers, switchgear, land, fences, buildings, equipment, vehicles, etc.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Asset">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType xmlns="" name="AssetHazardKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetHazardKind">
+<xs:annotation>
+<xs:documentation>Type of hazard that is posed to asset in this location.</xs:documentation>
+<xs:documentation>Note: This enumeration provides essential information to asset health analytics. The existing list is a starting point and is anticipated to be fleshed out further as requirements are better understood (PAB 2016/01/09).</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="ambientTempAbove38">
+<xs:annotation>
+<xs:documentation>Subject to ambient temperature above 38 °C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ambientTempBelowMinus12">
+<xs:annotation>
+<xs:documentation>Subject to ambient temperature of below -12 °C.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="childrenAtPlay">
+<xs:annotation>
+<xs:documentation>Children play in area (stray kite/ball hazard).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="fishingArea">
+<xs:annotation>
+<xs:documentation>Fishing in area (fishing pole/line hazard).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="other">
+<xs:annotation>
+<xs:documentation>If other, look at type field for more information.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="vegetation">
+<xs:annotation>
+<xs:documentation>Vegetation growing below asset that may cause problem.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType xmlns="" name="AssetLocationHazard" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetLocationHazard">
+<xs:annotation>
+<xs:documentation>Potential hazard related to the location of an asset. Examples are trees growing under overhead power lines, a park being located by a substation (i.e., children climb fence to recover a ball), a lake near an overhead distribution line (fishing pole/line contacting power lines), dangerous neighbour, etc.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Hazard">
+<xs:sequence>
+<xs:element name="kind" minOccurs="0" maxOccurs="1" type="m:AssetHazardKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetLocationHazard.kind">
+<xs:annotation>
+<xs:documentation>Kind of hazard.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Locations" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetLocationHazard.Locations">
+<xs:annotation>
+<xs:documentation>The location of this hazard.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="AssetOrganisationRole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetOrganisationRole">
+<xs:annotation>
+<xs:documentation>Role an organisation plays with respect to asset.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:OrganisationRole">
+<xs:sequence>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetOrganisationRole.Assets">
+<xs:annotation>
+<xs:documentation>All assets for this organisation role.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="AssetOwner" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetOwner">
+<xs:annotation>
+<xs:documentation>Owner of the asset.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:AssetOrganisationRole">
+<xs:sequence>
+<xs:element name="Organisation" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OrganisationRole.Organisation">
+<xs:annotation>
+<xs:documentation>Organisation having this role.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Ownerships" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#AssetOwner.Ownerships">
+<xs:annotation>
+<xs:documentation>All ownerships of this owner.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Author" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Author">
+<xs:annotation>
+<xs:documentation>Person who created document or activity record.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:DocumentPersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="BaseWork" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseWork">
+<xs:annotation>
+<xs:documentation>Common representation for work and work tasks.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Document">
+<xs:sequence>
+<xs:element name="kind" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseWork.kind">
+<xs:annotation>
+<xs:documentation>Kind of work.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="statusKind" minOccurs="0" maxOccurs="1" type="m:WorkStatusKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseWork.statusKind">
+<xs:annotation>
+<xs:documentation>Kind of work status.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="priority" minOccurs="0" maxOccurs="1" type="m:Priority" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseWork.priority">
+<xs:annotation>
+<xs:documentation>Priority of work.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="TimeSchedules" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseWork.TimeSchedules">
+<xs:annotation>
+<xs:documentation>All time schedules for this work or work task.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="WorkLocation" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#BaseWork.WorkLocation">
+<xs:annotation>
+<xs:documentation>Location for this work/task.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="ConfigurationEvent" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConfigurationEvent">
+<xs:annotation>
+<xs:documentation>Used to report details on creation, change or deletion of an entity or its configuration.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ActivityRecord">
+<xs:sequence>
+<xs:element name="remark" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConfigurationEvent.remark">
+<xs:annotation>
+<xs:documentation>Free text remarks.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="ChangedLocation" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConfigurationEvent.ChangedLocation">
+<xs:annotation>
+<xs:documentation>Location whose change resulted in this configuration event.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="ConnectivityNodeContainer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ConnectivityNodeContainer">
+<xs:annotation>
+<xs:documentation>A base class for all objects that may contain connectivity nodes or topological nodes.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:PowerSystemResource">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="CoordinateSystem" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CoordinateSystem">
+<xs:annotation>
+<xs:documentation>Coordinate reference system.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Crew" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Crew">
+<xs:annotation>
+<xs:documentation>Group of people with specific skills, tools, and vehicles.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="CrewType" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Crew.CrewType">
+<xs:annotation>
+<xs:documentation>Type of this crew.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Crew.Location">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="WorkTasks" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Crew.WorkTasks">
+<xs:annotation>
+<xs:documentation>All work tasks this crew participates in.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="CrewMember" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CrewMember">
+<xs:annotation>
+<xs:documentation>Member of a crew.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:OperationPersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType xmlns="" name="CrewStatusKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CrewStatusKind">
+<xs:annotation>
+<xs:documentation>Defines the current status of the Crew - assigned, arrived, etc.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="arrived">
+<xs:annotation>
+<xs:documentation>the crew is on site at the outage location</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="assigned">
+<xs:annotation>
+<xs:documentation>the crew has been assigned to work on a task</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="awaitingCrewAssignment">
+<xs:annotation>
+<xs:documentation>Indicates that the work is awaiting one or more crews to be assigned</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="enroute">
+<xs:annotation>
+<xs:documentation>the crew has been dispatched to work on an outage</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="fieldComplete">
+<xs:annotation>
+<xs:documentation>the crew has corrected the outage in the field.  The equipment or other devices may not be energized at this time.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType xmlns="" name="CrewType" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CrewType">
+<xs:annotation>
+<xs:documentation>Custom description of the type of crew. This may be used to determine the type of work the crew can be assigned to. Examples include repair, tree trimming, switching, etc.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="Crews" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CrewType.Crews">
+<xs:annotation>
+<xs:documentation>All crews of this type.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="DateTimeInterval" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DateTimeInterval">
+<xs:annotation>
+<xs:documentation>Interval between two date and time points.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="end" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DateTimeInterval.end">
+<xs:annotation>
+<xs:documentation>End date and time of this interval.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="start" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DateTimeInterval.start">
+<xs:annotation>
+<xs:documentation>Start date and time of this interval.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="Discrete" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Discrete">
+<xs:annotation>
+<xs:documentation>Discrete represents a discrete Measurement, i.e. a Measurement representing discrete values, e.g. a Breaker position.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Measurement">
+<xs:sequence>
+<xs:element name="DiscreteValues" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Discrete.DiscreteValues">
+<xs:annotation>
+<xs:documentation>The values connected to this measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="DiscreteValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DiscreteValue">
+<xs:annotation>
+<xs:documentation>DiscreteValue represents a discrete MeasurementValue.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:MeasurementValue">
+<xs:sequence>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DiscreteValue.value">
+<xs:annotation>
+<xs:documentation>The value to supervise.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Discrete" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DiscreteValue.Discrete">
+<xs:annotation>
+<xs:documentation>Measurement to which this value is connected.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Document" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document">
+<xs:annotation>
+<xs:documentation>Parent class for different groupings of information collected and managed as a part of a business process. It will frequently contain references to other objects, such as assets, people and power system resources.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="comment" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.comment">
+<xs:annotation>
+<xs:documentation>Free text comment.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="title" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.title">
+<xs:annotation>
+<xs:documentation>Document title.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.type">
+<xs:annotation>
+<xs:documentation>Utility-specific classification of this document, according to its corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="electronicAddress" minOccurs="0" maxOccurs="1" type="m:ElectronicAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.electronicAddress">
+<xs:annotation>
+<xs:documentation>Electronic address.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" type="m:Status" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.status">
+<xs:annotation>
+<xs:documentation>Status of subject matter (e.g., Agreement, Work) this document represents. For status of the document itself, use 'docStatus' attribute.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="DocumentPersonRole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DocumentPersonRole">
+<xs:annotation>
+<xs:documentation>Person role with respect to documents.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:PersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Editor" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Editor">
+<xs:annotation>
+<xs:documentation>Person who modified the document.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:DocumentPersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="ElectronicAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ElectronicAddress">
+<xs:annotation>
+<xs:documentation>Electronic address information.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="lan" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ElectronicAddress.lan">
+<xs:annotation>
+<xs:documentation>Address on local area network.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="EquipmentContainer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#EquipmentContainer">
+<xs:annotation>
+<xs:documentation>A modeling construct to provide a root class for containing equipment.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:ConnectivityNodeContainer">
+<xs:sequence>
+<xs:element name="Equipments" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#EquipmentContainer.Equipments">
+<xs:annotation>
+<xs:documentation>Contained equipment.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="ExtensionItem" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ExtensionItem">
+<xs:annotation/>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="ExtensionsList" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ExtensionsList">
+<xs:annotation/>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="Feeder" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Feeder">
+<xs:annotation>
+<xs:documentation>A collection of equipment for organizational purposes, used for grouping distribution resources.</xs:documentation>
+<xs:documentation>The organization a feeder does not necessarily reflect connectivity or current operation state.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:EquipmentContainer">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="FieldDispatchHistory" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#FieldDispatchHistory">
+<xs:annotation>
+<xs:documentation>The history of field dispatch statuses for this work.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="FieldDispatchStep" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#FieldDispatchStep">
+<xs:annotation>
+<xs:documentation>Details of the step in the field dispatch history.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="Hazard" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Hazard">
+<xs:annotation>
+<xs:documentation>An object or a condition that is a danger for causing loss or perils to an asset and/or people.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Hazard.type">
+<xs:annotation>
+<xs:documentation>Type of this hazard.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" type="m:Status" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Hazard.status">
+<xs:annotation>
+<xs:documentation>Status of this hazard.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="IOPoint" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IOPoint">
+<xs:annotation>
+<xs:documentation>The class describe a measurement or control value. The purpose is to enable having attributes and associations common for measurement and control.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="IdentifiedObject" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject">
+<xs:annotation>
+<xs:documentation>This is a root class to provide common identification for all classes needing identification and naming attributes.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="mRID" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+<xs:annotation>
+<xs:documentation>Master resource identifier issued by a model authority. The mRID is unique within an exchange context. Global uniqueness is easily achieved by using a UUID,  as specified in RFC 4122, for the mRID. The use of UUID is strongly recommended.</xs:documentation>
+<xs:documentation>For CIMXML data files in RDF syntax conforming to IEC 61970-552 Edition 1, the mRID is mapped to rdf:ID or rdf:about attributes that identify CIM object elements.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="aliasName" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.aliasName">
+<xs:annotation>
+<xs:documentation>The aliasName is free text human readable name of the object alternative to IdentifiedObject.name. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+<xs:documentation>The attribute aliasName is retained because of backwards compatibility between CIM relases. It is however recommended to replace aliasName with the Name class as aliasName is planned for retirement at a future time.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.description">
+<xs:annotation>
+<xs:documentation>The description is a free human readable text describing or naming the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.name">
+<xs:annotation>
+<xs:documentation>The name is any free human readable and possibly non unique text naming the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="Issuer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Issuer">
+<xs:annotation>
+<xs:documentation>Person who issued the document and is responsible for its content.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:DocumentPersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Location" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location">
+<xs:annotation>
+<xs:documentation>The place, scene, or point of something where someone or something has been, is, and/or will be at a given moment in time. It can be defined with one or more postition points (coordinates) in a given coordinate system.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="direction" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.direction">
+<xs:annotation>
+<xs:documentation>(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="geoInfoReference" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.geoInfoReference">
+<xs:annotation>
+<xs:documentation>(if applicable) Reference to geographical information source, often external to the utility.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.type">
+<xs:annotation>
+<xs:documentation>Classification by utility's corporate standards and practices, relative to the location itself (e.g., geographical, functional accounting, etc., not a given property that happens to exist at that location).</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.Assets">
+<xs:annotation>
+<xs:documentation>All assets at this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="ConfigurationEvents" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.ConfigurationEvents">
+<xs:annotation>
+<xs:documentation>All configuration events created for this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Crew" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.Crew">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="electronicAddress" minOccurs="0" maxOccurs="1" type="m:ElectronicAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.electronicAddress">
+<xs:annotation>
+<xs:documentation>Electronic address.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Hazards" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.Hazards">
+<xs:annotation>
+<xs:documentation>All asset hazards at this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="mainAddress" minOccurs="0" maxOccurs="1" type="m:StreetAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.mainAddress">
+<xs:annotation>
+<xs:documentation>Main address of the location.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Measurements" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.Measurements">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PositionPoints" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.PositionPoints">
+<xs:annotation>
+<xs:documentation>Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResources" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.PowerSystemResources">
+<xs:annotation>
+<xs:documentation>All power system resources at this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="status" minOccurs="0" maxOccurs="1" type="m:Status" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.status">
+<xs:annotation>
+<xs:documentation>Status of this location.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="MaintenanceLocation" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#MaintenanceLocation">
+<xs:annotation>
+<xs:documentation>Location where to perform maintenance work.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:WorkLocation">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Measurement" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement">
+<xs:annotation>
+<xs:documentation>A Measurement represents any measured, calculated or non-measured non-calculated quantity. Any piece of equipment may contain Measurements, e.g. a substation may have temperature measurements and door open indications, a transformer may have oil temperature and tank pressure measurements, a bay may contain a number of power flow measurements and a Breaker may contain a switch status measurement.</xs:documentation>
+<xs:documentation>The PSR - Measurement association is intended to capture this use of Measurement and is included in the naming hierarchy based on EquipmentContainer. The naming hierarchy typically has Measurements as leafs, e.g. Substation-VoltageLevel-Bay-Switch-Measurement.</xs:documentation>
+<xs:documentation>Some Measurements represent quantities related to a particular sensor location in the network, e.g. a voltage transformer (PT) at a busbar or a current transformer (CT) at the bar between a breaker and an isolator. The sensing position is not captured in the PSR - Measurement association. Instead it is captured by the Measurement - Terminal association that is used to define the sensing location in the network topology. The location is defined by the connection of the Terminal to ConductingEquipment.</xs:documentation>
+<xs:documentation>If both a Terminal and PSR are associated, and the PSR is of type ConductingEquipment, the associated Terminal should belong to that ConductingEquipment instance.</xs:documentation>
+<xs:documentation>When the sensor location is needed both Measurement-PSR and Measurement-Terminal are used. The Measurement-Terminal association is never used alone.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="measurementType" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.measurementType">
+<xs:annotation>
+<xs:documentation>Specifies the type of measurement.  For example, this specifies if the measurement represents an indoor temperature, outdoor temperature, bus voltage, line flow, etc.</xs:documentation>
+<xs:documentation>When the measurementType is set to "Specialization", the type of Measurement is defined in more detail by the specialized class which inherits from Measurement.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="unitMultiplier" minOccurs="0" maxOccurs="1" type="m:UnitMultiplier" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.unitMultiplier">
+<xs:annotation>
+<xs:documentation>The unit multiplier of the measured quantity.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="unitSymbol" minOccurs="0" maxOccurs="1" type="m:UnitSymbol" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.unitSymbol">
+<xs:annotation>
+<xs:documentation>The unit of measure of the measured quantity.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Asset" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.Asset">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Locations" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.Locations">
+<xs:annotation/>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="PowerSystemResource" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Measurement.PowerSystemResource">
+<xs:annotation>
+<xs:documentation>The power system resource that contains the measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="MeasurementValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#MeasurementValue">
+<xs:annotation>
+<xs:documentation>The current state for a measurement. A state value is an instance of a measurement from a specific source. Measurements can be associated with many state values, each representing a different source for the measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IOPoint">
+<xs:sequence>
+<xs:element name="timeStamp" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#MeasurementValue.timeStamp">
+<xs:annotation>
+<xs:documentation>The time when the value was last updated</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Name" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name">
+<xs:annotation>
+<xs:documentation>The Name class provides the means to define any number of human readable  names for an object. A name is &lt;b&gt;not&lt;/b&gt; to be used for defining inter-object relationships. For inter-object relationships instead use the object identification 'mRID'.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.name">
+<xs:annotation>
+<xs:documentation>Any free text that name the object.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="IdentifiedObject" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.IdentifiedObject">
+<xs:annotation>
+<xs:documentation>Identified object that this name designates.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="NameType" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.NameType">
+<xs:annotation>
+<xs:documentation>Type of this name.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="NameType" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType">
+<xs:annotation>
+<xs:documentation>Type of name. Possible values for attribute 'name' are implementation dependent but standard profiles may specify types. An enterprise may have multiple IT systems each having its own local name for the same object, e.g. a planning system may have different names from an EMS. An object may also have different names within the same IT system, e.g. localName as defined in CIM version 14. The definition from CIM14 is:</xs:documentation>
+<xs:documentation>The localName is a human readable name of the object. It is a free text name local to a node in a naming hierarchy similar to a file directory structure. A power system related naming hierarchy may be: Substation, VoltageLevel, Equipment etc. Children of the same parent in such a hierarchy have names that typically are unique among them.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.description">
+<xs:annotation>
+<xs:documentation>Description of the name type.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="name" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.name">
+<xs:annotation>
+<xs:documentation>Name of the name type.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.Names">
+<xs:annotation>
+<xs:documentation>All names of this type.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="OperationPersonRole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OperationPersonRole">
+<xs:annotation>
+<xs:documentation>Person role in the context of utility operations.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:PersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Operator" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Operator">
+<xs:annotation>
+<xs:documentation>Control room operator.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:OperationPersonRole">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Organisation" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Organisation">
+<xs:annotation>
+<xs:documentation>Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="Roles" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Organisation.Roles">
+<xs:annotation>
+<xs:documentation>All roles of this organisation.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="OrganisationRole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OrganisationRole">
+<xs:annotation>
+<xs:documentation>Identifies a way in which an organisation may participate in the utility enterprise (e.g., customer, manufacturer, etc).</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="ConfigurationEvents" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#OrganisationRole.ConfigurationEvents">
+<xs:annotation>
+<xs:documentation>All configuration events created for this organisation role.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Ownership" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Ownership">
+<xs:annotation>
+<xs:documentation>Ownership of e.g. asset.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="Asset" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Ownership.Asset">
+<xs:annotation>
+<xs:documentation>Asset that is object of this ownership.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="AssetOwner" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Ownership.AssetOwner">
+<xs:annotation>
+<xs:documentation>Asset owner that is subject in this ownership.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="ParentOrganization" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ParentOrganization">
+<xs:annotation/>
+<xs:complexContent>
+<xs:extension base="m:Organisation">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Person" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Person">
+<xs:annotation>
+<xs:documentation>General purpose information for name and other information to contact people.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="PersonRole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PersonRole">
+<xs:annotation/>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Pole" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Pole">
+<xs:annotation>
+<xs:documentation>Pole asset.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Structure">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="PositionPoint" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint">
+<xs:annotation>
+<xs:documentation>Set of spatial coordinates that determine a point, defined in the coordinate system specified in 'Location.CoordinateSystem'. Use a single position point instance to desribe a point-oriented location. Use a sequence of position points to describe a line-oriented object (physical location of non-point oriented objects like cables or lines), or area of an object (like a substation or a geographical zone - in this case, have first and last position point with the same values).</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="groupNumber" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.groupNumber">
+<xs:annotation>
+<xs:documentation>Zero-relative sequence number of this group within a series of points; used when there is a need to express disjoint groups of points that are considered to be part of a single location.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="sequenceNumber" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.sequenceNumber">
+<xs:annotation>
+<xs:documentation>Zero-relative sequence number of this point within a series of points.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="xPosition" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.xPosition">
+<xs:annotation>
+<xs:documentation>X axis position.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="yPosition" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.yPosition">
+<xs:annotation>
+<xs:documentation>Y axis position.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.Location">
+<xs:annotation>
+<xs:documentation>Location described by this position point.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="PowerSystemResource" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource">
+<xs:annotation>
+<xs:documentation>A power system resource can be an item of equipment such as a switch, an equipment container containing many individual items of equipment such as a substation, or an organisational entity such as sub-control area. Power system resources can have measurements associated.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence>
+<xs:element name="Assets" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Assets">
+<xs:annotation>
+<xs:documentation>All assets represented by this power system resource. For example, multiple conductor assets are electrically modelled as a single AC line segment.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Location" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Location">
+<xs:annotation>
+<xs:documentation>Location of this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Measurements" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PowerSystemResource.Measurements">
+<xs:annotation>
+<xs:documentation>The measurements associated with this power system resource.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Priority" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Priority">
+<xs:annotation>
+<xs:documentation>Priority definition.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="rank" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Priority.rank">
+<xs:annotation>
+<xs:documentation>Priority level; usually, lower number means high priority, but the details are provided in 'type'.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="ScheduledEvent" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ScheduledEvent">
+<xs:annotation>
+<xs:documentation>An event to trigger one or more activities, such as reading a meter, recalculating a bill, requesting work, when generating units must be scheduled for maintenance, when a transformer is scheduled to be refurbished, etc.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="ScheduledEventData" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ScheduledEventData">
+<xs:annotation>
+<xs:documentation>Schedule parameters for an activity that is to occur, is occurring, or has completed.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="Status" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status">
+<xs:annotation>
+<xs:documentation>Current status information relevant to an entity.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="dateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.dateTime">
+<xs:annotation>
+<xs:documentation>Date and time for which status 'value' applies.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="reason" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.reason">
+<xs:annotation>
+<xs:documentation>Reason code or explanation for why an object went to the current status 'value'.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="remark" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.remark">
+<xs:annotation>
+<xs:documentation>Pertinent information regarding the current 'value', as free form text.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.value">
+<xs:annotation>
+<xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="StreetAddress" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress">
+<xs:annotation>
+<xs:documentation>General purpose street and postal address information.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="streetDetail" minOccurs="0" maxOccurs="1" type="m:StreetDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.streetDetail">
+<xs:annotation>
+<xs:documentation>Street detail.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="StreetDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail">
+<xs:annotation>
+<xs:documentation>Street details, in the context of address.</xs:documentation>
+</xs:annotation>
+<xs:sequence>
+<xs:element name="addressGeneral" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.addressGeneral">
+<xs:annotation>
+<xs:documentation>First line of a free form address or some additional address information (for example a mail stop).</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType xmlns="" name="StringMeasurement" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StringMeasurement">
+<xs:annotation>
+<xs:documentation>StringMeasurement represents a measurement with values of type string.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Measurement">
+<xs:sequence>
+<xs:element name="StringMeasurementValues" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StringMeasurement.StringMeasurementValues">
+<xs:annotation>
+<xs:documentation>The values connected to this measurement.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="StringMeasurementValue" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StringMeasurementValue">
+<xs:annotation>
+<xs:documentation>StringMeasurementValue represents a measurement value of type string.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:MeasurementValue">
+<xs:sequence>
+<xs:element name="value" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StringMeasurementValue.value">
+<xs:annotation>
+<xs:documentation>The value to supervise.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="StringMeasurement" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StringMeasurementValue.StringMeasurement">
+<xs:annotation>
+<xs:documentation>Measurement to which this value is connected.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="Structure" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Structure">
+<xs:annotation>
+<xs:documentation>Construction holding assets such as conductors, transformers, switchgear, etc. Where applicable, number of conductors can be derived from the number of associated wire spacing instances.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:AssetContainer">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="TelephoneNumber" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber">
+<xs:annotation>
+<xs:documentation>Telephone number.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="TimePoint" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TimePoint">
+<xs:annotation>
+<xs:documentation>A point in time within a sequence of points in time relative to a time schedule.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:IdentifiedObject">
+<xs:sequence/>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="TimeSchedule" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TimeSchedule">
+<xs:annotation>
+<xs:documentation>Description of anything that changes through time. Time schedule is used to perform a single-valued function of time. Use inherited 'type' attribute to give additional information on this schedule, such as: periodic (hourly, daily, weekly, monthly, etc.), day of the month, by date, calendar (specific times and dates).</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Document">
+<xs:sequence>
+<xs:element name="offset" minOccurs="0" maxOccurs="1" type="m:Seconds" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TimeSchedule.offset">
+<xs:annotation>
+<xs:documentation>The offset from midnight (i.e., 0 h, 0 min, 0 s) for the periodic time points to begin. For example, for an interval meter that is set up for five minute intervals ('recurrencePeriod'=300=5 min), setting 'offset'=120=2 min would result in scheduled events to read the meter executing at 2 min, 7 min, 12 min, 17 min, 22 min, 27 min, 32 min, 37 min, 42 min, 47 min, 52 min, and 57 min past each hour.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="scheduleInterval" minOccurs="0" maxOccurs="1" type="m:DateTimeInterval" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TimeSchedule.scheduleInterval">
+<xs:annotation>
+<xs:documentation>Schedule date and time interval.</xs:documentation>
+</xs:annotation>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:complexType xmlns="" name="TownDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail">
+<xs:annotation>
+<xs:documentation>Town details, in the context of address.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:simpleType xmlns="" name="UnitMultiplier" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#UnitMultiplier">
+<xs:annotation>
+<xs:documentation>The unit multipliers defined for the CIM.  When applied to unit symbols, the unit symbol is treated as a derived unit. Regardless of the contents of the unit symbol text, the unit symbol shall be treated as if it were a single-character unit symbol. Unit symbols should not contain multipliers, and it should be left to the multiplier to define the multiple for an entire data type.</xs:documentation>
+<xs:documentation>For example, if a unit symbol is "A2Perh" and the multiplier is "k", then the value is k(A^2/h), and the multiplier applies to the entire final value, not to any individual part of the value. This can be conceptualized by substituting a derived unit symbol for the unit type. If one imagines that the symbol "Þ" represents the derived unit "A2Perh", then applying the multiplier "k" can be conceptualized simply as "kÞ".</xs:documentation>
+<xs:documentation>For example, the SI unit for mass is "kg" and not "g".  If the unit symbol is defined as "kg", then the multiplier is applied to "kg" as a whole and does not replace the "k" in front of the "g". In this case, the multiplier of "m" would be used with the unit symbol of "kg" to represent one gram.  As a text string, this violates the instructions in IEC 80000-1. However, because the unit symbol in CIM is treated as a derived unit instead of as an SI unit, it makes more sense to conceptualize the "kg" as if it were replaced by one of the proposed replacements for the SI mass symbol. If one imagines that the "kg" were replaced by a symbol "Þ", then it is easier to conceptualize the multiplier "m" as creating the proper unit "mÞ", and not the forbidden unit "mkg".</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="E">
+<xs:annotation>
+<xs:documentation>Exa 10**18.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="G">
+<xs:annotation>
+<xs:documentation>Giga 10**9.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="M">
+<xs:annotation>
+<xs:documentation>Mega 10**6.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="P">
+<xs:annotation>
+<xs:documentation>Peta 10**15</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="T">
+<xs:annotation>
+<xs:documentation>Tera 10**12.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Y">
+<xs:annotation>
+<xs:documentation>Yotta 10**24</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Z">
+<xs:annotation>
+<xs:documentation>Zetta 10**21</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="a">
+<xs:annotation>
+<xs:documentation>atto 10**-18.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="c">
+<xs:annotation>
+<xs:documentation>Centi 10**-2.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="d">
+<xs:annotation>
+<xs:documentation>Deci 10**-1.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="da">
+<xs:annotation>
+<xs:documentation>deca 10**1.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="f">
+<xs:annotation>
+<xs:documentation>femto 10**-15.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="h">
+<xs:annotation>
+<xs:documentation>hecto 10**2.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="k">
+<xs:annotation>
+<xs:documentation>Kilo 10**3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m">
+<xs:annotation>
+<xs:documentation>Milli 10**-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="micro">
+<xs:annotation>
+<xs:documentation>Micro 10**-6.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="n">
+<xs:annotation>
+<xs:documentation>Nano 10**-9.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="none">
+<xs:annotation>
+<xs:documentation>No multiplier or equivalently multiply by 1.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="p">
+<xs:annotation>
+<xs:documentation>Pico 10**-12.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="y">
+<xs:annotation>
+<xs:documentation>yocto 10**-24.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="z">
+<xs:annotation>
+<xs:documentation>zepto 10**-21.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType xmlns="" name="UnitSymbol" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#UnitSymbol">
+<xs:annotation>
+<xs:documentation>The derived units defined for usage in the CIM. In some cases, the derived unit is equal to an SI unit. Whenever possible, the standard derived symbol is used instead of the formula for the derived unit. For example, the unit symbol Farad is defined as "F" instead of "CPerV". In cases where a standard symbol does not exist for a derived unit, the formula for the unit is used as the unit symbol. For example, density does not have a standard symbol and so it is represented as "kgPerm3". With the exception of the "kg", which is an SI unit, the unit symbols do not contain multipliers and therefore represent the base derived unit to which a multiplier can be applied as a whole.</xs:documentation>
+<xs:documentation>Every unit symbol is treated as an unparseable text as if it were a single-letter symbol. The meaning of each unit symbol is defined by the accompanying descriptive text and not by the text contents of the unit symbol.</xs:documentation>
+<xs:documentation>To allow the widest possible range of serializations without requiring special character handling, several substitutions are made which deviate from the format described in IEC 80000-1. The division symbol "/" is replaced by the letters"Per". Exponents are written in plain text after the unit as "m3" instead of being formatted as in "m&lt;sup&gt;3&lt;/sup&gt;" or introducing a symbol as in "m^3". The degree symbol "°" is replaced with the letters "deg". Any clarification of the meaning for a substitution is included in the description for the unit symbol.</xs:documentation>
+<xs:documentation>Non-SI units are included in list of unit symbols to allow sources of data to be correctly labeled with their non-SI units (for example, a GPS sensor that is reporting numbers that represent feet instead of meters). This allows software to use the unit symbol information correctly convert and scale the raw data of those sources into SI-based units.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="A">
+<xs:annotation>
+<xs:documentation>Current in Ampere.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="A2">
+<xs:annotation>
+<xs:documentation>Ampere squared (A²).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="A2h">
+<xs:annotation>
+<xs:documentation>ampere-squared hour, Ampere-squared hour.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="A2s">
+<xs:annotation>
+<xs:documentation>Ampere squared time in square ampere (A²s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="APerA">
+<xs:annotation>
+<xs:documentation>Current, Ratio of Amperages  Note: Users may need to supply a prefix such as ‘m’ to show rates such as ‘mA/A’.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="APerm">
+<xs:annotation>
+<xs:documentation>A/m, magnetic field strength, Ampere per metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Ah">
+<xs:annotation>
+<xs:documentation>Ampere-hours, Ampere-hours.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="As">
+<xs:annotation>
+<xs:documentation>Ampere seconds (A·s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Bq">
+<xs:annotation>
+<xs:documentation>Radioactivity in Becquerel (1/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Btu">
+<xs:annotation>
+<xs:documentation>Energy, British Thermal Unit.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="C">
+<xs:annotation>
+<xs:documentation>Electric charge in Coulomb (A·s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CPerkg">
+<xs:annotation>
+<xs:documentation>exposure (x rays), Coulomb per kilogram.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CPerm2">
+<xs:annotation>
+<xs:documentation>surface charge density, Coulomb per square metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="CPerm3">
+<xs:annotation>
+<xs:documentation>electric charge density, Coulomb per cubic metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="F">
+<xs:annotation>
+<xs:documentation>Electric capacitance in Farad (C/V).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="FPerm">
+<xs:annotation>
+<xs:documentation>permittivity, Farad per metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="G">
+<xs:annotation>
+<xs:documentation>Magnetic flux density, Gauss (1 G = 10-4 T).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Gy">
+<xs:annotation>
+<xs:documentation>Absorbed dose in Gray (J/kg).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="GyPers">
+<xs:annotation>
+<xs:documentation>absorbed dose rate, Gray per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="H">
+<xs:annotation>
+<xs:documentation>Electric inductance in Henry (Wb/A).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="HPerm">
+<xs:annotation>
+<xs:documentation>permeability, Henry per metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Hz">
+<xs:annotation>
+<xs:documentation>Frequency in Hertz (1/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="HzPerHz">
+<xs:annotation>
+<xs:documentation>Frequency, Rate of frequency change  Note: Users may need to supply a prefix such as ‘m’ to show rates such as ‘mHz/Hz’.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="HzPers">
+<xs:annotation>
+<xs:documentation>Rate of change of frequency in Hertz per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="J">
+<xs:annotation>
+<xs:documentation>Energy in joule (N·m = C·V = W·s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPerK">
+<xs:annotation>
+<xs:documentation>Heat capacity in Joule/Kelvin.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPerkg">
+<xs:annotation>
+<xs:documentation>Specific energy, Joule / kg.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPerkgK">
+<xs:annotation>
+<xs:documentation>Specific heat capacity, specific entropy, Joule per kilogram Kelvin.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPerm2">
+<xs:annotation>
+<xs:documentation>Insulation energy density, Joule per square metre or watt second per square metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPerm3">
+<xs:annotation>
+<xs:documentation>energy density, Joule per cubic metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPermol">
+<xs:annotation>
+<xs:documentation>molar energy, Joule per mole.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPermolK">
+<xs:annotation>
+<xs:documentation>molar entropy, molar heat capacity, Joule per mole kelvin.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="JPers">
+<xs:annotation>
+<xs:documentation>Energy rate joule per second (J/s),</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="K">
+<xs:annotation>
+<xs:documentation>Temperature in Kelvin.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="KPers">
+<xs:annotation>
+<xs:documentation>Temperature change rate in Kelvin per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="M">
+<xs:annotation>
+<xs:documentation>Length, nautical mile (1 M = 1852 m).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Mx">
+<xs:annotation>
+<xs:documentation>Magnetic flux, Maxwell (1 Mx = 10-8 Wb).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="N">
+<xs:annotation>
+<xs:documentation>Force in Newton (kg·m/s²).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="NPerm">
+<xs:annotation>
+<xs:documentation>Surface tension, Newton per metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Nm">
+<xs:annotation>
+<xs:documentation>Moment of force, Newton metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Oe">
+<xs:annotation>
+<xs:documentation>Magnetic field, Œrsted (1 Oe = (103/4p) A/m).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Pa">
+<xs:annotation>
+<xs:documentation>Pressure in Pascal (N/m²). Note: the absolute or relative measurement of pressure is implied with this entry. See below for more explicit forms.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="PaPers">
+<xs:annotation>
+<xs:documentation>Pressure change rate in Pascal per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Pas">
+<xs:annotation>
+<xs:documentation>Dynamic viscosity, Pascal second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Q">
+<xs:annotation>
+<xs:documentation>Quantity power, Q.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Qh">
+<xs:annotation>
+<xs:documentation>Quantity energy, Qh.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="S">
+<xs:annotation>
+<xs:documentation>Conductance in Siemens.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="SPerm">
+<xs:annotation>
+<xs:documentation>Conductance per length (F/m).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Sv">
+<xs:annotation>
+<xs:documentation>Dose equivalent in Sievert (J/kg).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="T">
+<xs:annotation>
+<xs:documentation>Magnetic flux density in Tesla (Wb/m2).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="V">
+<xs:annotation>
+<xs:documentation>Electric potential in Volt (W/A).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="V2">
+<xs:annotation>
+<xs:documentation>Volt squared (W²/A²).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="V2h">
+<xs:annotation>
+<xs:documentation>volt-squared hour, Volt-squared-hours.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VA">
+<xs:annotation>
+<xs:documentation>Apparent power in Volt Ampere (See also real power and reactive power.)</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VAh">
+<xs:annotation>
+<xs:documentation>Apparent energy in Volt Ampere hours.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VAr">
+<xs:annotation>
+<xs:documentation>Reactive power in Volt Ampere reactive. The “reactive” or “imaginary” component of electrical power (VIsin(phi)). (See also real power and apparent power).</xs:documentation>
+<xs:documentation>Note: Different meter designs use different methods to arrive at their results. Some meters may compute reactive power as an arithmetic value, while others compute the value vectorially. The data consumer should determine the method in use and the suitability of the measurement for the intended purpose.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VArh">
+<xs:annotation>
+<xs:documentation>Reactive energy in Volt Ampere reactive hours.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VPerHz">
+<xs:annotation>
+<xs:documentation>Magnetic flux in Volt per Hertz.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VPerV">
+<xs:annotation>
+<xs:documentation>Voltage, Ratio of voltages Note: Users may need to supply a prefix such as ‘m’ to show rates such as ‘mV/V’.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VPerVA">
+<xs:annotation>
+<xs:documentation>Power factor, PF, the ratio of the active power to the apparent power. Note: The sign convention used for power factor will differ between IEC meters and EEI (ANSI) meters. It is assumed that the data consumers understand the type of meter being used and agree on the sign convention in use at any given utility.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VPerVAr">
+<xs:annotation>
+<xs:documentation>Power factor, PF, the ratio of the active power to the apparent power. Note: The sign convention used for power factor will differ between IEC meters and EEI (ANSI) meters. It is assumed that the data consumers understand the type of meter being used and agree on the sign convention in use at any given utility.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="VPerm">
+<xs:annotation>
+<xs:documentation>electric field strength, Volt per metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Vh">
+<xs:annotation>
+<xs:documentation>Volt-hour, Volt hours.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Vs">
+<xs:annotation>
+<xs:documentation>Volt second (Ws/A).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="W">
+<xs:annotation>
+<xs:documentation>Real power in Watt (J/s). Electrical power may have real and reactive components. The real portion of electrical power (I²R or VIcos(phi)), is expressed in Watts. (See also apparent power and reactive power.)</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPerA">
+<xs:annotation>
+<xs:documentation>Active power per current flow, watt per Ampere.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPerW">
+<xs:annotation>
+<xs:documentation>Signal Strength, Ratio of power  Note: Users may need to supply a prefix such as ‘m’ to show rates such as ‘mW/W’.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPerm2">
+<xs:annotation>
+<xs:documentation>Heat flux density, irradiance, Watt per square metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPerm2sr">
+<xs:annotation>
+<xs:documentation>radiance, Watt per square metre steradian.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPermK">
+<xs:annotation>
+<xs:documentation>Thermal conductivity in Watt/metre Kelvin.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPers">
+<xs:annotation>
+<xs:documentation>Ramp rate in Watt per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="WPersr">
+<xs:annotation>
+<xs:documentation>Radiant intensity, Watt per steradian.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Wb">
+<xs:annotation>
+<xs:documentation>Magnetic flux in Weber (V·s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="Wh">
+<xs:annotation>
+<xs:documentation>Real energy in Watt hours.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="anglemin">
+<xs:annotation>
+<xs:documentation>Plane angle, minute.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="anglesec">
+<xs:annotation>
+<xs:documentation>Plane angle, second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="bar">
+<xs:annotation>
+<xs:documentation>Pressure, bar (1 bar = 100 kPa).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="cd">
+<xs:annotation>
+<xs:documentation>Luminous intensity in candela.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="charPers">
+<xs:annotation>
+<xs:documentation>Data rate (baud) in characters per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="character">
+<xs:annotation>
+<xs:documentation>Number of characters.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="cosPhi">
+<xs:annotation>
+<xs:documentation>Power factor, dimensionless.</xs:documentation>
+<xs:documentation>Note 1: This definition of power factor only holds for balanced systems. See the alternative definition under code 153.</xs:documentation>
+<xs:documentation>Note 2 : Beware of differing sign conventions in use between the IEC and EEI. It is assumed that the data consumer understands the type of meter in use and the sign convention in use by the utility.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="count">
+<xs:annotation>
+<xs:documentation>Amount of substance, Counter value.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="d">
+<xs:annotation>
+<xs:documentation>Time, day = 24 h = 86400 s.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="dB">
+<xs:annotation>
+<xs:documentation>Sound pressure level in decibel. Note:  multiplier “d” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="dBm">
+<xs:annotation>
+<xs:documentation>Power level (logrithmic ratio of signal strength , Bel-mW), normalized to 1mW. Note:  multiplier “d” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="deg">
+<xs:annotation>
+<xs:documentation>Plane angle in degrees.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="degC">
+<xs:annotation>
+<xs:documentation>Relative temperature in degrees Celsius.</xs:documentation>
+<xs:documentation>In the SI unit system the symbol is ºC. Electric charge is measured in coulomb that has the unit symbol C. To distinguish degree Celsius form coulomb the symbol used in the UML is degC. Reason for not using ºC is the special character º is difficult to manage in software.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ft3">
+<xs:annotation>
+<xs:documentation>Volume, cubic foot.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="gPerg">
+<xs:annotation>
+<xs:documentation>Concentration, The ratio of the mass of a solute divided by the mass of  the solution. Note: Users may need use a prefix such a ‘µ’ to express a quantity such as ‘µg/g’.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="gal">
+<xs:annotation>
+<xs:documentation>Volume, US gallon (1 gal = 231 in3 = 128 fl ounce).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="h">
+<xs:annotation>
+<xs:documentation>Time, hour = 60 min = 3600 s.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ha">
+<xs:annotation>
+<xs:documentation>Area, hectare.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kat">
+<xs:annotation>
+<xs:documentation>Catalytic activity, katal = mol / s.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="katPerm3">
+<xs:annotation>
+<xs:documentation>catalytic activity concentration, katal per cubic metre.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kg">
+<xs:annotation>
+<xs:documentation>Mass in kilogram.  Note: multiplier “k” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kgPerJ">
+<xs:annotation>
+<xs:documentation>Weigh per energy in kilogram/joule (kg/J). Note: multiplier “k” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kgPerm3">
+<xs:annotation>
+<xs:documentation>Density in kilogram/cubic metre (kg/m³). Note: multiplier “k” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kgm">
+<xs:annotation>
+<xs:documentation>Moment of mass in kilogram metre (kg·m) (first moment of mass). Note: multiplier “k” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kgm2">
+<xs:annotation>
+<xs:documentation>Moment of mass in kilogram square metre (kg·m²) (Second moment of mass, commonly called the moment of inertia). Note: multiplier “k” is included in this unit symbol for compatibility with IEC 61850-7-3.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="kn">
+<xs:annotation>
+<xs:documentation>Speed, knot (1 kn = 1852/3600) m/s.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="l">
+<xs:annotation>
+<xs:documentation>Volume, litre = dm3 = m3/1000.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="lPerh">
+<xs:annotation>
+<xs:documentation>Volumetric flow rate, litre per hour.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="lPerl">
+<xs:annotation>
+<xs:documentation>Concentration, The ratio of the volume of a solute divided by the volume of  the solution. Note: Users may need use a prefix such a ‘µ’ to express a quantity such as ‘µL/L’.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="lPers">
+<xs:annotation>
+<xs:documentation>Volumetric flow rate in litre per second.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="lm">
+<xs:annotation>
+<xs:documentation>Luminous flux in lumen (cd·sr).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="lx">
+<xs:annotation>
+<xs:documentation>Illuminance in lux (lm/m²).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m">
+<xs:annotation>
+<xs:documentation>Length in meter.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m2">
+<xs:annotation>
+<xs:documentation>Area in square metre (m²).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m2Pers">
+<xs:annotation>
+<xs:documentation>Viscosity in metre square / second (m²/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m3">
+<xs:annotation>
+<xs:documentation>Volume in cubic metre (m³).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m3Compensated">
+<xs:annotation>
+<xs:documentation>Volume, cubic metre, with the value compensated for weather effects.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m3Perh">
+<xs:annotation>
+<xs:documentation>Volumetric flow rate, cubic metre per hour.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m3Perkg">
+<xs:annotation>
+<xs:documentation>Specific volume, cubic metre per kilogram, v.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m3Pers">
+<xs:annotation>
+<xs:documentation>Volumetric flow rate in cubic metres per second (m³/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="m3Uncompensated">
+<xs:annotation>
+<xs:documentation>Volume, cubic metre, with the value uncompensated for weather effects.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="mPerm3">
+<xs:annotation>
+<xs:documentation>Fuel efficiency in metre per cubic metre (m/m³).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="mPers">
+<xs:annotation>
+<xs:documentation>Velocity in metre per second (m/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="mPers2">
+<xs:annotation>
+<xs:documentation>Acceleration in metre per second squared (m/s²).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="min">
+<xs:annotation>
+<xs:documentation>Time, minute  = 60 s.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="mmHg">
+<xs:annotation>
+<xs:documentation>Pressure, millimeter of mercury (1 mmHg is approximately 133.3 Pa).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="mol">
+<xs:annotation>
+<xs:documentation>Amount of substance in mole.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="molPerkg">
+<xs:annotation>
+<xs:documentation>Concentration, Molality, the amount of solute in moles and the amount of solvent in kilograms.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="molPerm3">
+<xs:annotation>
+<xs:documentation>Concentration, The amount of substance concentration, (c), the amount of solvent in moles divided by the volume of solution in m³.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="molPermol">
+<xs:annotation>
+<xs:documentation>Concentration, Molar fraction (?), the ratio of the molar amount of a solute divided by the molar amount of the solution.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="none">
+<xs:annotation>
+<xs:documentation>Dimension less quantity, e.g. count, per unit, etc.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ohm">
+<xs:annotation>
+<xs:documentation>Electric resistance in ohm (V/A).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ohmPerm">
+<xs:annotation>
+<xs:documentation>Electric resistance per length in ohm per metre ((V/A)/m).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ohmm">
+<xs:annotation>
+<xs:documentation>resistivity, Ohm metre, (rho).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="onePerHz">
+<xs:annotation>
+<xs:documentation>Reciprocal of frequency (1/Hz).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="onePerm">
+<xs:annotation>
+<xs:documentation>Wavenumber, reciprocal metre,  (1/m).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="ppm">
+<xs:annotation>
+<xs:documentation>Concentration in parts per million.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="rad">
+<xs:annotation>
+<xs:documentation>Plane angle in radian (m/m).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="radPers">
+<xs:annotation>
+<xs:documentation>Angular velocity in radians per second (rad/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="radPers2">
+<xs:annotation>
+<xs:documentation>Angular acceleration, radian per second squared.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="rev">
+<xs:annotation>
+<xs:documentation>Amount of rotation, Revolutions.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="rotPers">
+<xs:annotation>
+<xs:documentation>Rotations per second (1/s). See also Hz (1/s).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="s">
+<xs:annotation>
+<xs:documentation>Time in seconds.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="sPers">
+<xs:annotation>
+<xs:documentation>Time, Ratio of time Note: Users may need to supply a prefix such as ‘µ’ to show rates such as ‘µs/s’</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="sr">
+<xs:annotation>
+<xs:documentation>Solid angle in steradian (m2/m2).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="therm">
+<xs:annotation>
+<xs:documentation>Energy, Therm.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="tonne">
+<xs:annotation>
+<xs:documentation>mass, “tonne” or “metric  ton” (1000 kg = 1 Mg).</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType xmlns="" name="UserAttribute" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#UserAttribute">
+<xs:annotation>
+<xs:documentation>Generic name-value pair class, with optional sequence number and units for value; can be used to model parts of information exchange when concrete types are not known in advance.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="Version" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Version">
+<xs:annotation>
+<xs:documentation>This is the version for a group of devices or objects.  This could be used to track the version for any group of objects or devices over time. For example, for a DERGroup, the requesting system may want to get the details of a specific version of a DERGroup.</xs:documentation>
+</xs:annotation>
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType xmlns="" name="Work" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work">
+<xs:annotation>
+<xs:documentation>Document used to request, initiate, track and record work.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:BaseWork">
+<xs:sequence>
+<xs:element name="requestDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.requestDateTime">
+<xs:annotation>
+<xs:documentation>Date and time work was requested.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="WorkTasks" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.WorkTasks">
+<xs:annotation>
+<xs:documentation>All tasks in this work.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType xmlns="" name="WorkKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkKind">
+<xs:annotation>
+<xs:documentation>Kinds of work.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="connect">
+<xs:annotation>
+<xs:documentation>Connect work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="construction">
+<xs:annotation>
+<xs:documentation>Construction work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="disconnect">
+<xs:annotation>
+<xs:documentation>Disconnect work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="inspection">
+<xs:annotation>
+<xs:documentation>Inspection work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="maintenance">
+<xs:annotation>
+<xs:documentation>Maintenance work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="other">
+<xs:annotation>
+<xs:documentation>Other kind of work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="reconnect">
+<xs:annotation>
+<xs:documentation>(deprecated) (use 'connect' instead) Reconnect work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="refurbishment">
+<xs:annotation>
+<xs:documentation>Work related to asset refurbishment.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="repair">
+<xs:annotation>
+<xs:documentation>Repair work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="service">
+<xs:annotation>
+<xs:documentation>Service work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="test">
+<xs:annotation>
+<xs:documentation>Test work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType xmlns="" name="WorkLocation" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation">
+<xs:annotation>
+<xs:documentation>Information about a particular location for various forms of work.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:Location">
+<xs:sequence>
+<xs:element name="BaseWorks" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation.BaseWorks">
+<xs:annotation>
+<xs:documentation>All works/tasks at this location.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType xmlns="" name="WorkStatusKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkStatusKind">
+<xs:annotation>
+<xs:documentation>Kind of status, specific to work.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="approved">
+<xs:annotation>
+<xs:documentation>Work has been approved.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="cancelled">
+<xs:annotation>
+<xs:documentation>Work has been canceled.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="closed">
+<xs:annotation>
+<xs:documentation>Work has been closed (typically by a person responsible for work management) and is ready for billing.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="completed">
+<xs:annotation>
+<xs:documentation>Work has been completed, i.e., crew can leave the work location and is available for another work.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="dispatched">
+<xs:annotation>
+<xs:documentation>Crew has been dispatched.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="enroute">
+<xs:annotation>
+<xs:documentation>Crew is 'en route'.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="inProgress">
+<xs:annotation>
+<xs:documentation>Work is in progress.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="onSite">
+<xs:annotation>
+<xs:documentation>Crew is on the site.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="scheduled">
+<xs:annotation>
+<xs:documentation>Work has been scheduled.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="waitingOnApproval">
+<xs:annotation>
+<xs:documentation>Work approval is pending.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="waitingOnMaterial">
+<xs:annotation>
+<xs:documentation>Work has been waiting on material.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="waitingToBeScheduled">
+<xs:annotation>
+<xs:documentation>Work needs to be scheduled.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType xmlns="" name="WorkTask" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask">
+<xs:annotation>
+<xs:documentation>A task within a set of work.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:BaseWork">
+<xs:sequence>
+<xs:element name="completedDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.completedDateTime">
+<xs:annotation>
+<xs:documentation>Date and time work task was completed.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="crewETA" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.crewETA">
+<xs:annotation>
+<xs:documentation>Estimated time of arrival, so that customer or police/fire department can be informed when the crew will arrive.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="instruction" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.instruction">
+<xs:annotation>
+<xs:documentation>Instructions for performing this task.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="laborHours" minOccurs="0" maxOccurs="1" type="m:Hours" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.laborHours">
+<xs:annotation>
+<xs:documentation>Hours of labor expended under work task.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="startedDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.startedDateTime">
+<xs:annotation>
+<xs:documentation>Date and time work task was started.</xs:documentation>
+</xs:annotation>
+</xs:element>
+<xs:element name="Crews" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.Crews">
+<xs:annotation>
+<xs:documentation>All crews participating in this work task.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="Work" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.Work">
+<xs:annotation>
+<xs:documentation>Work this task belongs to.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType xmlns="" name="WorkTaskKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTaskKind">
+<xs:annotation>
+<xs:documentation>Kinds of work tasks.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="exchange">
+<xs:annotation>
+<xs:documentation>Work task deals with exchange of assets.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="install">
+<xs:annotation>
+<xs:documentation>Work task deals with installation of assets.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="investigate">
+<xs:annotation>
+<xs:documentation>Work task deals with investigation about assets.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="remove">
+<xs:annotation>
+<xs:documentation>Work task deals with removal of assets.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:complexType xmlns="" name="WorkTimeSchedule" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeSchedule">
+<xs:annotation>
+<xs:documentation>Time schedule specific to work.</xs:documentation>
+</xs:annotation>
+<xs:complexContent>
+<xs:extension base="m:TimeSchedule">
+<xs:sequence>
+<xs:element name="kind" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeSchedule.kind">
+<xs:annotation>
+<xs:documentation>Kind of this work schedule.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+<xs:element name="BaseWork" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeSchedule.BaseWork">
+<xs:annotation>
+<xs:documentation>Time schedule for this work or work task.</xs:documentation>
+</xs:annotation>
+<xs:complexType sawsdl:modelReference="">
+<xs:attribute name="ref" type="xs:string"/>
+</xs:complexType>
+</xs:element>
+</xs:sequence>
+</xs:extension>
+</xs:complexContent>
+</xs:complexType>
+<xs:simpleType xmlns="" name="WorkTimeScheduleKind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeScheduleKind">
+<xs:annotation>
+<xs:documentation>Kind of work schedule.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:string">
+<xs:enumeration value="actual">
+<xs:annotation>
+<xs:documentation>Actual work time schedule.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="earliest">
+<xs:annotation>
+<xs:documentation>Earliest work time schedule.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="estimate">
+<xs:annotation>
+<xs:documentation>Estimate work time schedule.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="immediate">
+<xs:annotation>
+<xs:documentation>??.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="latest">
+<xs:annotation>
+<xs:documentation>Latest work time schedule.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+<xs:enumeration value="request">
+<xs:annotation>
+<xs:documentation>Request work time schedule.</xs:documentation>
+</xs:annotation>
+</xs:enumeration>
+</xs:restriction>
+</xs:simpleType>
+<xs:simpleType xmlns="" name="Seconds" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Seconds">
+<xs:annotation>
+<xs:documentation>Time, in seconds.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:float"/>
+</xs:simpleType>
+<xs:simpleType xmlns="" name="Hours" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Hours">
+<xs:annotation>
+<xs:documentation>Time specified in hours.</xs:documentation>
+</xs:annotation>
+<xs:restriction base="xs:float"/>
+</xs:simpleType>
+
+<xs:element name="NetworkOperation" type="m:NetworkOperation">
+</xs:element>
+<xs:complexType name="NetworkOperation">
+	<xs:choice minOccurs="0" maxOccurs="unbounded">
+		<xs:element name="Analog" type="m:Analog" />
+		<xs:element name="AnalogValue" type="m:AnalogValue" />
+		<xs:element name="Asset" type="m:Asset" />
+		<xs:element name="AssetLocationHazard" type="m:AssetLocationHazard" />
+		<xs:element name="AssetOrganisationRole" type="m:AssetOrganisationRole" />
+		<xs:element name="AssetOwner" type="m:AssetOwner" />
+		<xs:element name="BaseWork" type="m:BaseWork" />
+		<xs:element name="ConfigurationEvent" type="m:ConfigurationEvent" />
+		<xs:element name="Crew" type="m:Crew" />
+		<xs:element name="CrewType" type="m:CrewType" />
+		<xs:element name="Discrete" type="m:Discrete" />
+		<xs:element name="DiscreteValue" type="m:DiscreteValue" />
+		<xs:element name="Document" type="m:Document" />
+		<xs:element name="Feeder" type="m:Feeder" />
+		<xs:element name="Hazard" type="m:Hazard" />
+		<xs:element name="IOPoint" type="m:IOPoint" />
+		<xs:element name="IdentifiedObject" type="m:IdentifiedObject" />
+		<xs:element name="Location" type="m:Location" />
+		<xs:element name="MaintenanceLocation" type="m:MaintenanceLocation" />
+		<xs:element name="Measurement" type="m:Measurement" />
+		<xs:element name="MeasurementValue" type="m:MeasurementValue" />
+		<xs:element name="Organisation" type="m:Organisation" />
+		<xs:element name="OrganisationRole" type="m:OrganisationRole" />
+		<xs:element name="Ownership" type="m:Ownership" />
+		<xs:element name="Pole" type="m:Pole" />
+		<xs:element name="PositionPoint" type="m:PositionPoint" />
+		<xs:element name="PowerSystemResource" type="m:PowerSystemResource" />
+		<xs:element name="Priority" type="m:Priority" />
+		<xs:element name="Status" type="m:Status" />
+		<xs:element name="StringMeasurement" type="m:StringMeasurement" />
+		<xs:element name="StringMeasurementValue" type="m:StringMeasurementValue" />
+		<xs:element name="TimeSchedule" type="m:TimeSchedule" />
+		<xs:element name="UnitMultiplier" type="m:UnitMultiplier" />
+		<xs:element name="UnitSymbol" type="m:UnitSymbol" />
+		<xs:element name="Work" type="m:Work" />
+  		<xs:element name="WorkKind" type="m:WorkKind" />
+  		<xs:element name="WorkLocation" type="m:WorkLocation" />
+  		<xs:element name="WorkStatusKind" type="m:WorkStatusKind" />
+  		<xs:element name="WorkTask" type="m:WorkTask" />
+  		<xs:element name="WorkTaskKind" type="m:WorkTaskKind" />
+  		<xs:element name="WorkTimeSchedule" type="m:WorkTimeSchedule" />
+  		<xs:element name="WorkTimeScheduleKind" type="m:WorkTimeScheduleKind" />  			
+	</xs:choice>
+</xs:complexType>
+</xs:schema>
+

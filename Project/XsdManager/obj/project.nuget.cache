@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "riVXUT9G1Ss2JbPT98E9m1F3DF7Jh6Gz9D+J5U+6XRxLIQpiTfNboN4wNXbqLIRt1gfL5kKaAFL3sOYyGdcUvQ==",
+  "success": true,
+  "projectFilePath": "C:\\Concert\\XsdManager\\Project\\XsdManager\\XsdManager.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\berna\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

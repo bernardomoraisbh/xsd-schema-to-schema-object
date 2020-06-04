@@ -1,0 +1,15 @@
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\XsdManager.exe
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\XsdManager.deps.json
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\XsdManager.runtimeconfig.json
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\XsdManager.runtimeconfig.dev.json
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\XsdManager.dll
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\XsdManager.pdb
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.csprojAssemblyReference.cache
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.AssemblyInfoInputs.cache
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.AssemblyInfo.cs
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.dll
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.pdb
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.genruntimeconfig.cache
+C:\Concert\XsdManager\Project\XsdManager\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.csproj.CoreCompileInputs.cache
+C:\Concert\XsdManager\Project\XsdManager\obj\Debug\netcoreapp3.1\XsdManager.csproj.CopyComplete
